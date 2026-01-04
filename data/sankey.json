@@ -1,0 +1,244 @@
+{
+  "scenarios": {
+    "base": {
+      "nodes": [
+        "Algas/Perifíton",
+        "Macroinvertebrados",
+        "Peixes",
+        "DOC (água)",
+        "POC (água)",
+        "Sedimento",
+        "CO₂ (água)",
+        "CH₄ (sedimento)",
+        "Atmosfera"
+      ],
+      "links": [
+        [
+          "Algas/Perifíton",
+          "POC (água)",
+          8
+        ],
+        [
+          "Algas/Perifíton",
+          "DOC (água)",
+          5
+        ],
+        [
+          "POC (água)",
+          "Sedimento",
+          6
+        ],
+        [
+          "DOC (água)",
+          "CO₂ (água)",
+          4
+        ],
+        [
+          "Sedimento",
+          "CH₄ (sedimento)",
+          2
+        ],
+        [
+          "CO₂ (água)",
+          "Atmosfera",
+          3
+        ],
+        [
+          "CH₄ (sedimento)",
+          "Atmosfera",
+          2
+        ],
+        [
+          "Algas/Perifíton",
+          "Macroinvertebrados",
+          4
+        ],
+        [
+          "Macroinvertebrados",
+          "Peixes",
+          2
+        ]
+      ]
+    },
+    "eutrofizacao": {
+      "nodes": [
+        "Algas/Perifíton",
+        "Macroinvertebrados",
+        "Peixes",
+        "DOC (água)",
+        "POC (água)",
+        "Sedimento",
+        "CO₂ (água)",
+        "CH₄ (sedimento)",
+        "Atmosfera"
+      ],
+      "links": [
+        [
+          "Algas/Perifíton",
+          "POC (água)",
+          12
+        ],
+        [
+          "Algas/Perifíton",
+          "DOC (água)",
+          7
+        ],
+        [
+          "POC (água)",
+          "Sedimento",
+          9
+        ],
+        [
+          "DOC (água)",
+          "CO₂ (água)",
+          6
+        ],
+        [
+          "Sedimento",
+          "CH₄ (sedimento)",
+          4
+        ],
+        [
+          "CO₂ (água)",
+          "Atmosfera",
+          4
+        ],
+        [
+          "CH₄ (sedimento)",
+          "Atmosfera",
+          4
+        ],
+        [
+          "Algas/Perifíton",
+          "Macroinvertebrados",
+          5
+        ],
+        [
+          "Macroinvertebrados",
+          "Peixes",
+          3
+        ]
+      ]
+    },
+    "seca": {
+      "nodes": [
+        "Algas/Perifíton",
+        "Macroinvertebrados",
+        "Peixes",
+        "DOC (água)",
+        "POC (água)",
+        "Sedimento",
+        "CO₂ (água)",
+        "CH₄ (sedimento)",
+        "Atmosfera"
+      ],
+      "links": [
+        [
+          "Algas/Perifíton",
+          "POC (água)",
+          6
+        ],
+        [
+          "Algas/Perifíton",
+          "DOC (água)",
+          4
+        ],
+        [
+          "POC (água)",
+          "Sedimento",
+          6
+        ],
+        [
+          "DOC (água)",
+          "CO₂ (água)",
+          6
+        ],
+        [
+          "Sedimento",
+          "CH₄ (sedimento)",
+          3
+        ],
+        [
+          "CO₂ (água)",
+          "Atmosfera",
+          6
+        ],
+        [
+          "CH₄ (sedimento)",
+          "Atmosfera",
+          3
+        ],
+        [
+          "Algas/Perifíton",
+          "Macroinvertebrados",
+          3
+        ],
+        [
+          "Macroinvertebrados",
+          "Peixes",
+          1
+        ]
+      ]
+    },
+    "inundacao": {
+      "nodes": [
+        "Algas/Perifíton",
+        "Macroinvertebrados",
+        "Peixes",
+        "DOC (água)",
+        "POC (água)",
+        "Sedimento",
+        "CO₂ (água)",
+        "CH₄ (sedimento)",
+        "Atmosfera"
+      ],
+      "links": [
+        [
+          "Algas/Perifíton",
+          "POC (água)",
+          9
+        ],
+        [
+          "Algas/Perifíton",
+          "DOC (água)",
+          7
+        ],
+        [
+          "POC (água)",
+          "Sedimento",
+          7
+        ],
+        [
+          "DOC (água)",
+          "CO₂ (água)",
+          5
+        ],
+        [
+          "Sedimento",
+          "CH₄ (sedimento)",
+          3
+        ],
+        [
+          "CO₂ (água)",
+          "Atmosfera",
+          3
+        ],
+        [
+          "CH₄ (sedimento)",
+          "Atmosfera",
+          3
+        ],
+        [
+          "Algas/Perifíton",
+          "Macroinvertebrados",
+          5
+        ],
+        [
+          "Macroinvertebrados",
+          "Peixes",
+          2
+        ]
+      ]
+    }
+  }
+}

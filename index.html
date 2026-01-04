@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jogo Científico Integrador — Carbono, Algas, Peixes & Macroinvertebrados</title>
+  <meta name="description" content="App educativo integrador: teoria, Sankey e quiz por níveis (graduando → pós-doc)." />
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icon-192.png">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">🧪🌿🐟</div>
+      <div>
+        <div class="title">Jogo Científico Integrador</div>
+        <div class="subtitle">Macroinvertebrados • Algas • Peixes • Carbono (sedimento, água, atmosfera)</div>
+      </div>
+    </div>
+    <div class="actions">
+      <button id="btnHelp" class="btn ghost" type="button">Como usar</button>
+      <button id="btnReset" class="btn danger ghost" type="button" title="Limpar progresso">Reset</button>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab active" data-tab="home" role="tab">Início</button>
+    <button class="tab" data-tab="teoria" role="tab">Teoria</button>
+    <button class="tab" data-tab="sankey" role="tab">Sankey</button>
+    <button class="tab" data-tab="quiz" role="tab">Quiz</button>
+    <button class="tab" data-tab="sobre" role="tab">Sobre</button>
+  </nav>
+
+  <main class="container">
+    <section id="tab-home" class="panel active">
+      <div class="hero">
+        <h1>Entenda (e teste) o ecossistema como um sistema integrado</h1>
+        <p>
+          Conexões entre <b>macroinvertebrados</b>, <b>algas</b>, <b>peixes</b> e <b>carbono</b>
+          em três compartimentos: <b>sedimento</b>, <b>coluna d’água</b> e <b>atmosfera</b>.
+        </p>
+
+        <div class="grid2">
+          <div class="card">
+            <h3>O que você vai fazer</h3>
+            <ul>
+              <li>Explorar teoria em trilhas curtas.</li>
+              <li>Ver um diagrama <b>Sankey</b> das rotas de carbono.</li>
+              <li>Responder um quiz e ganhar um “nível científico”.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Seu progresso</h3>
+            <div class="progress">
+              <div class="kpi"><span id="kpiName">Visitante</span><small>perfil</small></div>
+              <div class="kpi"><span id="kpiLevel">—</span><small>nível</small></div>
+              <div class="kpi"><span id="kpiBest">0%</span><small>melhor quiz</small></div>
+            </div>
+            <div class="row">
+              <label class="label" for="nameInput">Seu nome (para aparecer no resultado)</label>
+              <input id="nameInput" class="input" placeholder="Digite seu nome…" maxlength="40" />
+              <button id="btnSaveName" class="btn" type="button">Salvar</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="cta">
+          <button class="btn primary" data-go="teoria" type="button">Começar pela Teoria</button>
+          <button class="btn" data-go="quiz" type="button">Ir direto ao Quiz</button>
+        </div>
+
+        <div class="note">Dica: publique no GitHub Pages e instale como <b>PWA</b>.</div>
+      </div>
+    </section>
+
+    <section id="tab-teoria" class="panel">
+      <div class="panel-head">
+        <h2>Teoria em trilhas</h2>
+        <p class="muted">Leia 1–2 trilhas e depois faça o quiz.</p>
+      </div>
+
+      <div class="trail-grid">
+        <article class="trail"><h3>1) Base: Quem é quem no ecossistema?</h3><p>Produtores, consumidores, decompositores e “pontes” entre compartimentos.</p><button class="btn small" data-open-trail="base">Abrir</button></article>
+        <article class="trail"><h3>2) Algas & nutrientes</h3><p>Produção primária, blooms, luz, N e P e carbono dissolvido.</p><button class="btn small" data-open-trail="algas">Abrir</button></article>
+        <article class="trail"><h3>3) Macroinvertebrados</h3><p>Traços funcionais e bioindicação conectando habitat e carbono.</p><button class="btn small" data-open-trail="macro">Abrir</button></article>
+        <article class="trail"><h3>4) Peixes como integradores</h3><p>Teias tróficas, migração, bioturbação e feedbacks com GEE.</p><button class="btn small" data-open-trail="peixes">Abrir</button></article>
+        <article class="trail"><h3>5) Carbono: sedimento → água → atmosfera</h3><p>DOC/POC, respiração, metanogênese, CO₂/CH₄ e trocas gasosas.</p><button class="btn small" data-open-trail="carbono">Abrir</button></article>
+      </div>
+
+      <div id="trailModal" class="modal hidden" aria-hidden="true">
+        <div class="modal-card">
+          <div class="modal-head">
+            <h3 id="trailTitle">Trilha</h3>
+            <button class="btn ghost" id="trailClose" type="button">Fechar</button>
+          </div>
+          <div id="trailBody" class="modal-body"></div>
+          <div class="modal-foot"><button class="btn" data-go="quiz" type="button">Fazer o quiz</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tab-sankey" class="panel">
+      <div class="panel-head">
+        <h2>Rotas de carbono (Sankey)</h2>
+        <p class="muted">Modelo conceitual editável em <code>data/sankey.json</code>.</p>
+      </div>
+
+      <div class="card">
+        <div class="row wrap">
+          <div class="field">
+            <label class="label" for="scenarioSelect">Cenário</label>
+            <select id="scenarioSelect" class="input">
+              <option value="base">Base</option>
+              <option value="eutrofizacao">Eutrofização</option>
+              <option value="seca">Seca</option>
+              <option value="inundacao">Inundação</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="label" for="flowScale">Escala dos fluxos</label>
+            <input id="flowScale" type="range" min="0.5" max="2.0" step="0.1" value="1.0" />
+            <div class="muted small">Só muda a visualização.</div>
+          </div>
+          <div class="field">
+            <label class="label" for="toggleLabels">Rótulos</label>
+            <select id="toggleLabels" class="input">
+              <option value="on">Ligados</option>
+              <option value="off">Desligados</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="sankeyWrap" class="sankey-wrap">
+          <svg id="sankeySvg" width="100%" height="520" role="img" aria-label="Diagrama Sankey de carbono"></svg>
+        </div>
+
+        <details class="hint">
+          <summary>O que isto mostra?</summary>
+          <p>Rotas de carbono entre organismos e compartimentos (conceitual). Depois a gente calibra com dados reais.</p>
+        </details>
+      </div>
+    </section>
+
+    <section id="tab-quiz" class="panel">
+      <div class="panel-head">
+        <h2>Quiz: você já pensa como pesquisador?</h2>
+        <p class="muted">Banco inicial. Vamos expandir pesado.</p>
+      </div>
+
+      <div class="card">
+        <div class="row wrap">
+          <div class="field">
+            <label class="label" for="levelSelect">Dificuldade</label>
+            <select id="levelSelect" class="input">
+              <option value="grad">Graduando</option>
+              <option value="mestre">Mestrado</option>
+              <option value="doutor">Doutorado</option>
+              <option value="posdoc">Pós-doc</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="label" for="questionCount">Nº de questões</label>
+            <select id="questionCount" class="input">
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20" selected>20</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="label" for="timerMode">Tempo</label>
+            <select id="timerMode" class="input">
+              <option value="off">Sem timer</option>
+              <option value="on">Com timer (8 min)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <button id="btnStartQuiz" class="btn primary" type="button">Começar</button>
+          <button id="btnReview" class="btn ghost" type="button" disabled>Revisar respostas</button>
+          <button id="btnCopyResult" class="btn" type="button" disabled>Copiar resultado</button>
+        </div>
+
+        <div id="quizArea" class="quiz-area hidden"></div>
+
+        <div id="quizResult" class="result hidden">
+          <h3>Resultado</h3>
+          <p id="resultText"></p>
+          <div class="result-kpis">
+            <div class="kpi"><span id="scorePct">0%</span><small>acerto</small></div>
+            <div class="kpi"><span id="scoreLevel">—</span><small>nível</small></div>
+            <div class="kpi"><span id="scoreTime">—</span><small>tempo</small></div>
+          </div>
+          <div class="row">
+            <button class="btn" data-go="sankey" type="button">Ver Sankey</button>
+            <button class="btn ghost" id="btnNewQuiz" type="button">Novo quiz</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tab-sobre" class="panel">
+      <div class="panel-head"><h2>Sobre</h2><p class="muted">MVP pronto para GitHub Pages.</p></div>
+      <div class="card">
+        <h3>Conteúdo editável</h3>
+        <ul>
+          <li>Teoria: <code>js/content.js</code></li>
+          <li>Sankey: <code>data/sankey.json</code></li>
+          <li>Questões: <code>js/questions.js</code></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Feito para estudo • MVP</span>
+    <span class="muted">GitHub Pages → instalar como app (PWA)</span>
+  </footer>
+
+  <div id="helpModal" class="modal hidden" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-head"><h3>Como usar</h3><button class="btn ghost" id="helpClose" type="button">Fechar</button></div>
+      <div class="modal-body">
+        <ol>
+          <li>Teoria → abra trilhas.</li>
+          <li>Sankey → consolide rotas.</li>
+          <li>Quiz → copie seu resultado e compartilhe.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>
+
+  <script src="js/storage.js"></script>
+  <script src="js/content.js"></script>
+  <script src="js/sankey.js"></script>
+  <script src="js/questions.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js'));
+    }
+  </script>
+</body>
+</html>
