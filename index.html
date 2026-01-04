@@ -55,8 +55,12 @@
             <h3>Seu progresso</h3>
             <div class="progress">
               <div class="kpi"><span id="kpiName">Visitante</span><small>perfil</small></div>
-              <div class="kpi"><span id="kpiLevel">—</span><small>nível</small></div>
-              <div class="kpi"><span id="kpiBest">0%</span><small>melhor quiz</small></div>
+              <div class="kpi"><span id="kpiBadge">—</span><small>badge</small></div>
+              <div class="kpi"><span id="kpiBest">0%</span><small>melhor %</small></div>
+              <div class="kpi"><span id="kpiRank">—</span><small>rank local</small></div>
+            </div>
+            <div class="row">
+              <button id="btnShowRanking" class="btn ghost" type="button">Ver ranking</button>
             </div>
             <div class="row">
               <label class="label" for="nameInput">Seu nome (para aparecer no resultado)</label>
@@ -130,6 +134,11 @@
               <option value="off">Desligados</option>
             </select>
           </div>
+        </div>
+
+        <div class="row">
+          <button id="btnSankeyPNG" class="btn" type="button">Baixar PNG</button>
+          <button id="btnSankeyCSV" class="btn ghost" type="button">Baixar CSV</button>
         </div>
 
         <div id="sankeyWrap" class="sankey-wrap">
@@ -228,6 +237,23 @@
           <li>Sankey → consolide rotas.</li>
           <li>Quiz → copie seu resultado e compartilhe.</li>
         </ol>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="rankModal" class="modal hidden" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>Ranking local (neste aparelho)</h3>
+        <button class="btn ghost" id="rankClose" type="button">Fechar</button>
+      </div>
+      <div class="modal-body">
+        <p class="muted">Esse ranking fica salvo no seu navegador (localStorage). Para comparar com outras pessoas, cada uma precisa jogar neste mesmo aparelho.</p>
+        <div id="rankTable"></div>
+      </div>
+      <div class="modal-foot">
+        <button class="btn danger ghost" id="btnClearRanking" type="button">Limpar ranking</button>
       </div>
     </div>
   </div>

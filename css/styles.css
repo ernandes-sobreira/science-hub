@@ -70,7 +70,8 @@ input[type="range"]{width:220px}
 .btn.danger{border-color: rgba(252,165,165,.55); color: rgba(252,165,165,.95)}
 .btn.small{padding:8px 10px; font-size:13px}
 .cta{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
-.progress{display:grid; grid-template-columns: repeat(3, 1fr); gap:10px}
+.progress{display:grid; grid-template-columns: repeat(2, 1fr); gap:10px}
+@media (min-width: 520px){.progress{grid-template-columns: repeat(4, 1fr);}}
 .kpi{
   background: rgba(11,16,32,.5); border:1px solid var(--line); border-radius: 14px; padding:10px 12px; text-align:center;
 }
