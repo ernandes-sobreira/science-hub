@@ -2,7 +2,7 @@
 
 **Você quer um título ou tem uma pergunta que não te deixa dormir?**
 
-App educacional, em português, com 34 flash-perguntas distribuídas em cinco dimensões: motivação, vida real, repertório científico, métodos de pesquisa, e conexão com a comunidade acadêmica.
+App educacional, em português, com 35 flash-perguntas distribuídas em cinco dimensões: motivação, vida real, repertório científico, métodos de pesquisa, e conexão com a comunidade acadêmica.
 
 ## Executar
 
